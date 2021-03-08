@@ -50,7 +50,7 @@ public class Country {
     private List<State> states;
 }
 ```
-I researched for a solution or way to solve this need, but seemingly no exist a way to do this with only Querydsl/Spring JPA. Without the approach below, the problem could be solved manually managing these results or making separated queries.
+I researched for a solution or way to solve this need, but seemingly no exist a way to do this only with Querydsl/Spring JPA. Without the approach below, the problem could be solved manually managing these results or making separated queries.
 
 ## Solution
 This lib offers a way to convert/bind/aggregate QueryDsl results into objects with n children levels. See a example below:
@@ -79,12 +79,12 @@ List<City> cities = QueryDslBinder.to(tupleResult, City.class,
 									.key("id", _state.id)))));
 ```
 
-The method QueryDslBinder.to convert a list of querydsl tuple into desired list of City objects. The third parameter is the bind specification, where "key" and "field" properties inside class City is associated with respective querydsl expression used in select statement. Can be specified more than one "keys", "fields", "single" relations and "collection" relations on any level.
+The method QueryDslBinder.to convert a list of querydsl tuple into desired list of City objects. The third parameter is the bind specification, where "key" and "field" properties inside class City are associated with respective querydsl expression used in select statement. Can be specified more than one "keys" for composite keys, "fields", "single" relations and "collection" relations in any level.
 
 When we want a grouping, like State on class City, we specify a "single" object with the field name on class City, and specify your fields. 
 
-When we want a grouping list, like a object Country with a list of States, we specify a "collection" with their fields. In example case, a state and your fields are already specified, so "states" field will contain a list of States with fields id and name filled, objects will have the same reference memory. Objects are instanciated only one time, according with specified "key" and type class that belongs.
+When we want a grouping list, like the object Country with a list of States, we specify a "collection" and their fields. In example case, a state and your fields are already specified on parent, so "states" attribute of country will contain a list of States with fields id and name already filled, althought field "name" was not specified at this moment. Objects will have the same reference memory. Objects are instanciated only one time, according with specified "key" and type class that belongs.
 
 With this lib, a result can be aggregated with any children level, in different manners. Children with backward parent reference, with each object and your unique key will have only one and same reference.
 
-A complete working test code can be found in file [QuerySqlBinderIntegrationTest.java](https://github.com/zisluiz/querydsl-object-binder/blob/main/src/test/java/com/zisluiz/querydslbinder/QuerySqlBinderIntegrationTest.java) running with Spring Boot, JPA, QueryDsl and H2 database. This code demonstrate a simple example, but this lib was used in many queries in private company project, supporting a variety of queries and needs.
+A complete working automation test code can be found in file [QuerySqlBinderIntegrationTest.java](https://github.com/zisluiz/querydsl-object-binder/blob/main/src/test/java/com/zisluiz/querydslbinder/QuerySqlBinderIntegrationTest.java) running with Spring Boot, JPA, QueryDsl and H2 database. This code demonstrate a simple example, but this lib was used in many queries in private company project, supporting a variety of queries and needs.
