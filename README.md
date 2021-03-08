@@ -35,7 +35,7 @@ Country
 * id
 * name
 
-But no exist a way to do tis with only Querydsl/Spring JPA.
+I researched for a solution or way to solve this need, but seemingly no exist a way to do this with only Querydsl/Spring JPA. Without the approach below, the problem could be solved manually managing these results or making separated queries.
 
 ## Solution
 This lib offers a way to convert/bind/aggregate QueryDsl results into objects with n children levels. See a example below:
