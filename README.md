@@ -17,7 +17,7 @@ There is no way to deal with a query like:
 List<City> cities = query.from(_city)
 		.join(_city.state, _state)
 		.join(_state.country, _country)
-		//some select/bind/aggregation values in multiple object levels
+		//some way to select/bind/aggregation values in multiple object levels
 		;
 ```
 
