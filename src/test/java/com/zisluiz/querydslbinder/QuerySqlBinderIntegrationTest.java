@@ -95,7 +95,7 @@ public class QuerySqlBinderIntegrationTest  {
 		Assertions.assertNotEquals(resultBalnearioCamboriu.getState().getCountry().getStates().get(0), 
 				resultBalnearioCamboriu.getState().getCountry().getStates().get(1));
 		
-		//apart name is not specified, states collections has the entire loaded object state, binded by id, with id and name filled.
+		//although name is not specified, states collections has the entire loaded object state, binded by id, with id and name filled.
 		Assertions.assertEquals(resultBalnearioCamboriu.getState().getCountry().getStates().get(0).getName(), santaCatarina.getName());
 		Assertions.assertEquals(resultBalnearioCamboriu.getState().getCountry().getStates().get(1).getName(), saoPauloState.getName());
 	}
