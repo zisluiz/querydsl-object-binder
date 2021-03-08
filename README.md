@@ -1,4 +1,4 @@
-#QueryDsl Object Binder
+# QueryDsl Object Binder
 
 ## What is QueryDsl
 [QueryDsl](http://www.querydsl.com/) is a framework for JPA/Java to write queries with generated QType objects. A plugin read your JPA entities and generates these files. 
@@ -17,7 +17,7 @@ query.from(_city)
 		.join(_state.country, _country);
 ```
 
-Where sometimes we need this result in a object-structure like:
+Sometimes we need this result in a object-structure like:
 
 City:
 * id
@@ -62,10 +62,12 @@ List<City> cities = QueryDslBinder.to(tupleResult, City.class,
 									.key("id", _state.id)))));
 ```
 
-The method QueryDslBinder.to convert a list of querydsl tuple into desired list of City objects. The third parameter is the bind specification, where "key" and "field" properties inside class City is associated with respective querydsl expression used in select statement.
+The method QueryDslBinder.to convert a list of querydsl tuple into desired list of City objects. The third parameter is the bind specification, where "key" and "field" properties inside class City is associated with respective querydsl expression used in select statement. Can be specified more than one "keys", "fields", "single" relations and "collection" relations on any level.
 
 When we want a grouping, like State on class City, we specify a "single" object with the field name on class City, and specify your fields. 
 
 When we want a grouping list, like a object Country with a list of States, we specify a "collection" with their fields. In example case, a state and your fields are already specified, so "states" field will contain a list of States with fields id and name filled, objects will have the same reference memory. Objects are instanciated only one time, according with specified "key" and type class that belongs.
+
+With this lib, a result can be aggregated with any children level, in different manners. Children with backward parent reference, with each object and your unique key will have only one and same reference.
 
 A complete working test code can be found in file QuerySqlBinderIntegrationTest.java running with Spring Boot, JPA, QueryDsl and H2 database.
