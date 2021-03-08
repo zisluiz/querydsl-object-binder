@@ -10,6 +10,8 @@ QueryDsl has a functionality to aggregate a result into a parent and children ob
 
 In "3.2.4. Result aggregation" section, a query example with posts and comments is presented. But QueryDsl not provide a way to aggregate objects with more deep children levels, like explaned in [https://stackoverflow.com/questions/59655149/querydsl-multilevel-result-aggregation](https://stackoverflow.com/questions/59655149/querydsl-multilevel-result-aggregation).
 
+A similar question in QueryDsl mailing [https://groups.google.com/g/querydsl/c/DqkGu-6128I/m/jnOUWinWAwAJ](https://groups.google.com/g/querydsl/c/DqkGu-6128I/m/jnOUWinWAwAJ). The answer in 2015 is "Querydsl group by projection doesn't yet fully support multiple levels". A issue with this problem also still open on github: [https://github.com/querydsl/querydsl/issues/1794](https://github.com/querydsl/querydsl/issues/1794).
+
 There is no way to deal with a query like:
 ```java
 query.from(_city)
@@ -70,4 +72,4 @@ When we want a grouping list, like a object Country with a list of States, we sp
 
 With this lib, a result can be aggregated with any children level, in different manners. Children with backward parent reference, with each object and your unique key will have only one and same reference.
 
-A complete working test code can be found in file QuerySqlBinderIntegrationTest.java running with Spring Boot, JPA, QueryDsl and H2 database.
+A complete working test code can be found in file QuerySqlBinderIntegrationTest.java running with Spring Boot, JPA, QueryDsl and H2 database. This code demonstrate a simple example, but this lib was used in many queries in private company project, supporting a variety of queries and needs.
