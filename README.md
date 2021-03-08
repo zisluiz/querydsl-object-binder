@@ -25,20 +25,31 @@ List<City> cities = query.from(_city)
 
 Sometimes we need this result in a object-structure like:
 
-City:
-* id
-* name
-* State 
+```java
+public class City {
 
-State:
-* id
-* name
-* Country
+    private Long id;       
+    private String name;
+    
+    private State state;
+}
 
-Country
-* id
-* name
+public class State {
 
+    private Long id;
+    private String name;
+ 
+    private Country country;
+}
+
+public class Country {
+
+    private Long id;    
+    private String name;
+    
+    private List<State> states;
+}
+```
 I researched for a solution or way to solve this need, but seemingly no exist a way to do this with only Querydsl/Spring JPA. Without the approach below, the problem could be solved manually managing these results or making separated queries.
 
 ## Solution
