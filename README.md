@@ -14,9 +14,11 @@ A similar question in QueryDsl mailing [https://groups.google.com/g/querydsl/c/D
 
 There is no way to deal with a query like:
 ```java
-query.from(_city)
+List<City> cities = query.from(_city)
 		.join(_city.state, _state)
-		.join(_state.country, _country);
+		.join(_state.country, _country)
+		//some select/bind/aggregation values in multiple object levels
+		;
 ```
 
 Sometimes we need this result in a object-structure like:
