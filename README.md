@@ -74,4 +74,4 @@ When we want a grouping list, like a object Country with a list of States, we sp
 
 With this lib, a result can be aggregated with any children level, in different manners. Children with backward parent reference, with each object and your unique key will have only one and same reference.
 
-A complete working test code can be found in file QuerySqlBinderIntegrationTest.java running with Spring Boot, JPA, QueryDsl and H2 database. This code demonstrate a simple example, but this lib was used in many queries in private company project, supporting a variety of queries and needs.
+A complete working test code can be found in file [QuerySqlBinderIntegrationTest.java](https://github.com/zisluiz/querydsl-object-binder/blob/main/src/test/java/com/zisluiz/querydslbinder/QuerySqlBinderIntegrationTest.java) running with Spring Boot, JPA, QueryDsl and H2 database. This code demonstrate a simple example, but this lib was used in many queries in private company project, supporting a variety of queries and needs.
