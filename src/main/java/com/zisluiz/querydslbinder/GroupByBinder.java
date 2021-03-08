@@ -14,29 +14,53 @@ public class GroupByBinder {
 	public GroupByBinder() {
 	}
 
-	public GroupByBinder field(String fieldNameDto, Expression<?> selectFieldPath) {
-		FieldBinder fieldBinder = new FieldBinder(fieldNameDto, selectFieldPath, FieldTypeBinder.FIELD);
+	/**
+	 * Specify the "key" field to identify a object instance.
+	 * @param attributeName name of attribute in class
+	 * @param fieldExpressionPath related querydsl expression
+	 * @return GroupByBinder reference
+	 */
+	public GroupByBinder key(String attributeName, Expression<?> fieldExpressionPath) {
+		FieldBinder fieldBinder = new FieldBinder(attributeName, fieldExpressionPath, FieldTypeBinder.KEY);
+		addPath(fieldBinder.getFieldType(), fieldBinder);
+		orderedFields.add(fieldBinder);
+		return this;
+	}
+	
+	/**
+	 * Specify the "field" (attribute) of a object instance.
+	 * @param attributeName name of attribute in class
+	 * @param fieldExpressionPath related querydsl expression
+	 * @return GroupByBinder reference
+	 */
+	public GroupByBinder field(String fieldName, Expression<?> fieldExpressionPath) {
+		FieldBinder fieldBinder = new FieldBinder(fieldName, fieldExpressionPath, FieldTypeBinder.FIELD);
+		addPath(fieldBinder.getFieldType(), fieldBinder);
+		orderedFields.add(fieldBinder);
+		return this;
+	}
+	
+	/**
+	 * Specify a attribute "field" that has a own field specification, and represent a single object.
+	 * @param attributeName name of attribute in class
+	 * @param singleSpecfication related "fields" specification for a single object
+	 * @return GroupByBinder reference
+	 */
+	public GroupByBinder single(String attributeName, GroupByBinder singleSpecfication) {
+		FieldBinder fieldBinder = new FieldBinder(attributeName, singleSpecfication, FieldTypeBinder.SINGLE);
 		addPath(fieldBinder.getFieldType(), fieldBinder);
 		orderedFields.add(fieldBinder);
 		return this;
 	}
 
-	public GroupByBinder collection(String fieldNameDto, GroupByBinder collectionSpecfication) {
-		FieldBinder fieldBinder = new FieldBinder(fieldNameDto, collectionSpecfication, FieldTypeBinder.COLLECTION);
-		addPath(fieldBinder.getFieldType(), fieldBinder);
-		orderedFields.add(fieldBinder);
-		return this;
-	}
-
-	public GroupByBinder single(String fieldNameDto, GroupByBinder singleSpecfication) {
-		FieldBinder fieldBinder = new FieldBinder(fieldNameDto, singleSpecfication, FieldTypeBinder.SINGLE);
-		addPath(fieldBinder.getFieldType(), fieldBinder);
-		orderedFields.add(fieldBinder);
-		return this;
-	}
-
-	public GroupByBinder key(String fieldNameDto, Expression<?> selectKeyFieldPath) {
-		FieldBinder fieldBinder = new FieldBinder(fieldNameDto, selectKeyFieldPath, FieldTypeBinder.KEY);
+	/**
+	 * Specify a attribute "field" that has a own field specification, and represent a collection of objects.
+	 * @param attributeName name of attribute in class
+	 * @param collectionSpecfication related "fields" specification for a collection of objects
+	 * @return GroupByBinder reference
+	 */
+	public GroupByBinder collection(String attributeName, GroupByBinder collectionSpecfication) {
+		FieldBinder fieldBinder = new FieldBinder(attributeName, collectionSpecfication, FieldTypeBinder.COLLECTION);
 		addPath(fieldBinder.getFieldType(), fieldBinder);
 		orderedFields.add(fieldBinder);
 		return this;

@@ -1,5 +1,7 @@
 # QueryDsl Object Binder
 
+Lib for bind/aggregate/group QueryDsl results in multiple level objects.
+
 ## What is QueryDsl
 [QueryDsl](http://www.querydsl.com/) is a framework for JPA/Java to write queries with generated QType objects. A plugin read your JPA entities and generates these files. 
 

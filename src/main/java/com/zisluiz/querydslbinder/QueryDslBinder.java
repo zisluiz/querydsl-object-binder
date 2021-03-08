@@ -102,6 +102,15 @@ public class QueryDslBinder {
 		}
 	}
 
+	/**
+	 * Method to bind/aggregate/groupby a list of querydsl tuples into a list of related objects.
+	 * 
+	 * @param <T> - First level desired type
+	 * @param tupleList - Querydsl tuple list
+	 * @param dtoClass - First level desired class
+	 * @param groupByBinder - Groupby specifications
+	 * @return a list of converted objects
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> to(List<Tuple> tupleList, Class<T> dtoClass, GroupByBinder groupByBinder) {
 		if (CollectionUtils.isEmpty(tupleList))
@@ -126,6 +135,15 @@ public class QueryDslBinder {
 		}
 	}
 
+	/**
+	 * Method to bind/aggregate/groupby a querydsl tuple into one object.
+	 * 
+	 * @param <T> - First level desired type
+	 * @param tupleList - Querydsl tuple 
+	 * @param dtoClass - First level desired class
+	 * @param groupByBinder - Groupby specifications
+	 * @return object result
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T one(Tuple tuple, Class<T> dtoClass, GroupByBinder groupByBinder) {
 		if (tuple == null)
@@ -145,6 +163,15 @@ public class QueryDslBinder {
 		}
 	}
 
+	/**
+	 * Method to bind/aggregate/groupby a list of querydsl tuples into one object.
+	 * 
+	 * @param <T> - First level desired type
+	 * @param tupleList - Querydsl tuple list
+	 * @param dtoClass - First level desired class
+	 * @param groupByBinder - Groupby specifications
+	 * @return object result
+	 */
 	public static <T> T one(List<Tuple> tupleList, Class<T> dtoClass, GroupByBinder groupByBinder) {
 		List<T> resultList = to(tupleList, dtoClass, groupByBinder);
 		if (resultList.size() > 1) {
