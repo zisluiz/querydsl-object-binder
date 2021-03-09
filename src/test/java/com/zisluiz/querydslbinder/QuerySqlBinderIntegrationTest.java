@@ -85,7 +85,7 @@ public class QuerySqlBinderIntegrationTest  {
 		Assertions.assertEquals(saoPauloState.getName(), resultSaoPaulo.getState().getName());
 		Assertions.assertEquals(brazil.getName(), resultSaoPaulo.getState().getCountry().getName());
 		
-		//brazil must have two countries
+		//brazil must have two states
 		Assertions.assertTrue(resultBalnearioCamboriu.getState().getCountry().getStates().size() == 2);
 		
 		//must be same objects memory
